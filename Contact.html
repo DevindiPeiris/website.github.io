@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CONTACT</title>
+        <link rel="stylesheet" href="Contact.css">
+    </head>
+    <body>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js";
+            import{getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyC3luAj9B_jjOX3C93T4XgHtxczLPY_q_8",
+              authDomain: "personal-website-3fbb6.firebaseapp.com",
+              databaseURL: "https://personal-website-3fbb6-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "personal-website-3fbb6",
+              storageBucket: "personal-website-3fbb6.appspot.com",
+              messagingSenderId: "766175125802",
+              appId: "1:766175125802:web:b6b3e4efcce6415b76be53"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            document.getElementById("userform").addEventListener("submit",function(e){
+                e.preventDefault();
+                let name = document.getElementById("t1").value;
+                let email = document.getElementById("t2").value;
+                let message = document.getElementById("tx1").value;
+
+                set(ref(db,'users/'+name),{
+                    email: email,
+                    message: message
+                });
+            });
+           
+          </script>
+        <header>
+        <div class="main">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="About.html">ABOUT</a></li>
+                    <li><a class= "active" href="#">CONTACT</a></li>
+                    
+                </ul>
+            
+        </div>
+        </header>
+        
+        <p class="p1">C O N T A C T &nbsp M E</p>
+        <hr class="hr1">
+        <br><br><br>
+        <div class="contact">
+            <img src="contact.jpg">
+            <form method="post" id="userform">
+                <fieldset>
+                    <legend><p class="p3">Contact Form</p></legend>
+                    <table>
+                        <tr>
+                            <td><label>Name</label><br><br></td>
+                            <td><input type="text" id="t1" placeholder="Enter your name" required size="60"><br><br></td>
+                        </tr>
+                        <tr>
+                            <td><label>Email</label><br><br></td>
+                            <td><input type="email" id="t2" placeholder="Enter your email address" required size="60"><br><br></td>
+                        </tr>
+                        <tr>
+                            <td><label>Message</label><br><br><br></td>
+                            <td><textarea name="textarea" id="tx1" placeholder="Enter your message" cols="55" rows="5"></textarea><br><br><br></td>
+                        </tr>
+                        <tr>
+                        <br>
+                        <td></td>
+                        <td ><input type="submit" name="submit" value=" Submit "><br></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+    </html>
